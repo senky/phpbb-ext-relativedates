@@ -1,0 +1,2 @@
+parameters:
+    datetime.class: \senky\relativedates\relativedatetime
