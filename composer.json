@@ -1,9 +1,9 @@
 {
 	"name": "senky/relativedates",
 	"type": "phpbb-extension",
-	"description": "Relative dates!",
+	"description": "Relative dates. Relative dates everywhere! This extension prints almost all dates in relative format (i.e. 3 days ago). Except for ones that we really want to see in absolute form. Mouseover exact date guarenteed.",
 	"version": "1.0.0",
-	"time": "2016-03-13",
+	"time": "2016-03-19",
 	"license": "GPL-2.0",
 	"authors": [{
 			"name": "Jakub Senko",
