@@ -2,7 +2,7 @@
 
 This is the repository for the development of the phpBB Relative Dates Extension
 
-[![Build Status](https://travis-ci.org/Senky/phpbb-ext-relativedates.svg?branch=master)](https://travis-ci.org/Senky/phpbb-ext-relativedates)
+[![Build Status](https://travis-ci.org/Senky/phpbb-ext-relativedates.svg?branch=develop)](https://travis-ci.org/Senky/phpbb-ext-relativedates)
 
 ## Install
 
