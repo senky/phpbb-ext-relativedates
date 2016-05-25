@@ -26,9 +26,9 @@ class relativedatetime extends Date
 	* Please note, that it is guaranteed, that this constructor is called first time with \phpbb\user
 	* param, so we can use that to set default output format and locale.
 	*
-	* @param \phpbb\user|string		$user		Object for context.
-	* @param string|\DateTimeZone	$time		String in a format accepted by strtotime().
-	* @param \DateTimeZone			$timezone	Time zone of the time.
+	* @param \phpbb\user|string		$user_or_time		phpBB User objec or String in a format accepted by strtotime()
+	* @param string|\DateTimeZone	$time_or_timezone	String in a format accepted by strtotime() or Time zone of the time
+	* @param \DateTimeZone			$timezone			Time zone of the time
 	*/
 	public function __construct($user_or_time, $time_or_timezone = 'now', \DateTimeZone $timezone = null)
 	{
