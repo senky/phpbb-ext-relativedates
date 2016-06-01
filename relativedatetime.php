@@ -14,7 +14,11 @@ use Jenssegers\Date\Date;
 
 class relativedatetime extends Date
 {
+	/**
+	* @var	string	Default date format
+	*/
 	static private $format;
+
 	/**
 	* Constructs a new instance of \Jenssegers\Date\Date, expanded to include an argument to inject
 	* the user context and modify the timezone to the users selected timezone if one is not set.
@@ -26,7 +30,7 @@ class relativedatetime extends Date
 	* Please note, that it is guaranteed, that this constructor is called first time with \phpbb\user
 	* param, so we can use that to set default output format and locale.
 	*
-	* @param \phpbb\user|string		$user_or_time		phpBB User objec or String in a format accepted by strtotime()
+	* @param \phpbb\user|string		$user_or_time		phpBB User object or String in a format accepted by strtotime()
 	* @param string|\DateTimeZone	$time_or_timezone	String in a format accepted by strtotime() or Time zone of the time
 	* @param \DateTimeZone			$timezone			Time zone of the time
 	*/
@@ -39,8 +43,10 @@ class relativedatetime extends Date
 			// We will sanatize it again before output.
 			self::$format = htmlspecialchars_decode($user_or_time->date_format);
 
-			// This class uses language definitions in \Jenssegers\Date\Lang\*
-			parent::setLocale($user_or_time->lang_name);
+			// Set custom language
+			$user_or_time->add_lang_ext('senky/relativedates', 'common');
+			$lang = new relativetranslator($user_or_time);
+			parent::setTranslator($lang);
 
 			// Default to user timezone
 			$timezone = $timezone ?: $user_or_time->timezone;
