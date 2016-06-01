@@ -53,7 +53,7 @@ class relativedatetime extends Date
 		}
 	}
 
-	public function format($format = '', $force_absolute = false)
+	public function format($format = '', $force_absolute = false, $absolute_wrap = true)
 	{
 		if ($force_absolute)
 		{
@@ -63,8 +63,15 @@ class relativedatetime extends Date
 		}
 		else
 		{
-			// Print relative date. Ensure it also contains absolute date displayed on mouseover.
-			return '<span title="' . htmlspecialchars(parent::format($format ?: self::$format)) . '">' . $this->diffForHumans() . '</span>';
+			// Print relative date. Ensure it also contains absolute date displayed on mouseover if not forbidden.
+			if ($absolute_wrap)
+			{
+				return '<span title="' . htmlspecialchars(parent::format($format ?: self::$format)) . '">' . $this->diffForHumans() . '</span>';
+			}
+			else
+			{
+				return $this->diffForHumans();
+			}
 		}
 	}
 }
