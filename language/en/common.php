@@ -33,7 +33,7 @@ $lang = array_merge($lang, array(
 	),
 	'WEEK'		=> array(
 		1	=> '1 week',
-		2	=> '%d week',
+		2	=> '%d weeks',
 	),
 	'DAY'		=> array(
 		1	=> '1 day',
