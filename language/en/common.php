@@ -19,6 +19,8 @@ if (empty($lang) || !is_array($lang))
 }
 
 $lang = array_merge($lang, array(
+	'RELATIVE_DATES'	=> 'Show relative dates',
+
 	'R_AGO'			=> '%s ago',
 	'R_FROM_NOW'	=> '%s from now',
 	'R_AFTER'		=> '%s after',

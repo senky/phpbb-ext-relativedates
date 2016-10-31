@@ -3,7 +3,7 @@
 *
 * Relative dates extension for the phpBB Forum Software package.
 *
-* @copyright (c) 2015 Jakub Senko <jakubsenko@gmail.com>
+* @copyright (c) 2016 Jakub Senko <jakubsenko@gmail.com>
 * @license GNU General Public License, version 2 (GPL-2.0)
 *
 */
@@ -18,6 +18,11 @@ class relativedatetime extends Date
 	* @var	string	Default date format
 	*/
 	static private $format;
+
+	/**
+	* @var	\phpbb\user	phpBB User object
+	*/
+	private $user;
 
 	/**
 	* Constructs a new instance of \Jenssegers\Date\Date, expanded to include an argument to inject
@@ -38,18 +43,20 @@ class relativedatetime extends Date
 	{
 		if ($user_or_time instanceof \phpbb\user)
 		{
+			$this->user = $user_or_time;
+
 			// Store default format. We have to decode it, because php's \DateTime::format() would
 			// parse sanitized chars, i.e. in &quot; 'u', 'o' and 't' all would be parsed.
 			// We will sanatize it again before output.
-			self::$format = htmlspecialchars_decode($user_or_time->date_format);
+			self::$format = htmlspecialchars_decode($this->user->date_format);
 
 			// Set custom language
-			$user_or_time->add_lang_ext('senky/relativedates', 'common');
-			$lang = new relativetranslator($user_or_time);
+			$this->user->add_lang_ext('senky/relativedates', 'common');
+			$lang = new relativetranslator($this->user);
 			parent::setTranslator($lang);
 
 			// Default to user timezone
-			$timezone = $timezone ?: $user_or_time->timezone;
+			$timezone = $timezone ?: $this->user->timezone;
 
 			parent::__construct($time_or_timezone, $timezone);
 		}
@@ -61,7 +68,7 @@ class relativedatetime extends Date
 
 	public function format($format = '', $force_absolute = false, $absolute_wrap = true)
 	{
-		if ($force_absolute)
+		if (!$this->user->data['user_relativedates'] || $force_absolute)
 		{
 			// Sanitize output, because it has been decoded to ensure \DateTime::format() parses only
 			// requisite chars.

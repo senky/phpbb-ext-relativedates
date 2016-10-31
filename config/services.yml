@@ -1,2 +1,12 @@
 parameters:
     datetime.class: \senky\relativedates\relativedatetime
+
+services:
+    senky.relativedates.listener:
+        class: senky\relativedates\event\listener
+        arguments:
+            - '@request'
+            - '@user'
+            - '@template'
+        tags:
+            - { name: event.listener }
