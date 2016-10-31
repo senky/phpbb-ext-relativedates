@@ -19,57 +19,57 @@ if (empty($lang) || !is_array($lang))
 }
 
 $lang = array_merge($lang, array(
-	'AGO'		=> 'πριν από %s',
-	'FROM_NOW'	=> '%s από τώρα',
-	'AFTER'		=> '%s μετά',
-	'BEFORE'	=> '%s πριν',
-	'YEAR'		=> array(
+	'R_AGO'			=> 'πριν από %s',
+	'R_FROM_NOW'	=> '%s από τώρα',
+	'R_AFTER'		=> '%s μετά',
+	'R_BEFORE'		=> '%s πριν',
+	'R_YEAR'		=> array(
 		1	=> '1 χρόνο',
 		2	=> '%d χρόνια',
 	),
-	'MONTH'		=> array(
+	'R_MONTH'		=> array(
 		1	=> '1 μήνα',
 		2	=> '%d μήνες',
 	),
-	'WEEK'		=> array(
+	'R_WEEK'		=> array(
 		1	=> '1 εβδομάδα',
 		2	=> '%d εβδομάδες',
 	),
-	'DAY'		=> array(
+	'R_DAY'			=> array(
 		1	=> '1 μέρα',
 		2	=> '%d μέρες',
 	),
-	'HOUR'		=> array(
+	'R_HOUR'		=> array(
 		1	=> '1 ώρα',
 		2	=> '%d ώρες',
 	),
-	'MINUTE'	=> array(
+	'R_MINUTE'		=> array(
 		1	=> '1 λεπτό',
 		2	=> '%d λεπτά',
 	),
-	'SECOND'	=> array(
+	'R_SECOND'		=> array(
 		1	=> '1 δευτερόλεπτο',
 		2	=> '%d δευτερόλεπτα',
 	),
 
-	'JANUARY'	=> 'Ιανουάρις',
-	'FEBRUARY'	=> 'Φεβρουάριος',
-	'MARCH'		=> 'Μάρτιος',
-	'APRIL'		=> 'Απρίλιος',
-	'MAY'		=> 'Μάιος',
-	'JUNE'		=> 'Ιούνιος',
-	'JULY'		=> 'Ιούλιος',
-	'AUGUST'	=> 'Αύγουστος',
-	'SEPTEMBER'	=> 'Σεπτέμβριος',
-	'OCTOBER'	=> 'Οκτώβριος',
-	'NOVEMBER'	=> 'Νοέμβριος',
-	'DECEMBER'	=> 'Δεκέμβριος',
+	'R_JANUARY'		=> 'Ιανουάρις',
+	'R_FEBRUARY'	=> 'Φεβρουάριος',
+	'R_MARCH'		=> 'Μάρτιος',
+	'R_APRIL'		=> 'Απρίλιος',
+	'R_MAY'			=> 'Μάιος',
+	'R_JUNE'		=> 'Ιούνιος',
+	'R_JULY'		=> 'Ιούλιος',
+	'R_AUGUST'		=> 'Αύγουστος',
+	'R_SEPTEMBER'	=> 'Σεπτέμβριος',
+	'R_OCTOBER'		=> 'Οκτώβριος',
+	'R_NOVEMBER'	=> 'Νοέμβριος',
+	'R_DECEMBER'	=> 'Δεκέμβριος',
 
-	'MONDAY'	=> 'Δευτέρα',
-	'TUESDAY'	=> 'Τρίτη',
-	'WEDNESDAY'	=> 'Τετάρτη',
-	'THURSDAY'	=> 'Πέμπτη',
-	'FRIDAY'	=> 'Παρασκευή',
-	'SATURDAY'	=> 'Σαββάτο',
-	'SUNDAY'	=> 'Κυριακή',
+	'R_MONDAY'		=> 'Δευτέρα',
+	'R_TUESDAY'		=> 'Τρίτη',
+	'R_WEDNESDAY'	=> 'Τετάρτη',
+	'R_THURSDAY'	=> 'Πέμπτη',
+	'R_FRIDAY'		=> 'Παρασκευή',
+	'R_SATURDAY'	=> 'Σαββάτο',
+	'R_SUNDAY'		=> 'Κυριακή',
 ));

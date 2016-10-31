@@ -19,57 +19,57 @@ if (empty($lang) || !is_array($lang))
 }
 
 $lang = array_merge($lang, array(
-	'AGO'		=> '%s ago',
-	'FROM_NOW'	=> '%s from now',
-	'AFTER'		=> '%s after',
-	'BEFORE'	=> '%s before',
-	'YEAR'		=> array(
+	'R_AGO'			=> '%s ago',
+	'R_FROM_NOW'	=> '%s from now',
+	'R_AFTER'		=> '%s after',
+	'R_BEFORE'		=> '%s before',
+	'R_YEAR'		=> array(
 		1	=> '1 year',
 		2	=> '%d years',
 	),
-	'MONTH'		=> array(
+	'R_MONTH'		=> array(
 		1	=> '1 month',
 		2	=> '%d months',
 	),
-	'WEEK'		=> array(
+	'R_WEEK'		=> array(
 		1	=> '1 week',
 		2	=> '%d weeks',
 	),
-	'DAY'		=> array(
+	'R_DAY'			=> array(
 		1	=> '1 day',
 		2	=> '%d days',
 	),
-	'HOUR'		=> array(
+	'R_HOUR'		=> array(
 		1	=> '1 hour',
 		2	=> '%d hours',
 	),
-	'MINUTE'	=> array(
+	'R_MINUTE'		=> array(
 		1	=> '1 minute',
 		2	=> '%d minutes',
 	),
-	'SECOND'	=> array(
+	'R_SECOND'		=> array(
 		1	=> '1 second',
 		2	=> '%d seconds',
 	),
 
-	'JANUARY'	=> 'January',
-	'FEBRUARY'	=> 'February',
-	'MARCH'		=> 'March',
-	'APRIL'		=> 'April',
-	'MAY'		=> 'May',
-	'JUNE'		=> 'June',
-	'JULY'		=> 'July',
-	'AUGUST'	=> 'August',
-	'SEPTEMBER'	=> 'September',
-	'OCTOBER'	=> 'October',
-	'NOVEMBER'	=> 'November',
-	'DECEMBER'	=> 'December',
+	'R_JANUARY'		=> 'January',
+	'R_FEBRUARY'	=> 'February',
+	'R_MARCH'		=> 'March',
+	'R_APRIL'		=> 'April',
+	'R_MAY'			=> 'May',
+	'R_JUNE'		=> 'June',
+	'R_JULY'		=> 'July',
+	'R_AUGUST'		=> 'August',
+	'R_SEPTEMBER'	=> 'September',
+	'R_OCTOBER'		=> 'October',
+	'R_NOVEMBER'	=> 'November',
+	'R_DECEMBER'	=> 'December',
 
-	'MONDAY'	=> 'Monday',
-	'TUESDAY'	=> 'Tuesday',
-	'WEDNESDAY'	=> 'Wednesday',
-	'THURSDAY'	=> 'Thursday',
-	'FRIDAY'	=> 'Friday',
-	'SATURDAY'	=> 'Saturday',
-	'SUNDAY'	=> 'Sunday',
+	'R_MONDAY'		=> 'Monday',
+	'R_TUESDAY'		=> 'Tuesday',
+	'R_WEDNESDAY'	=> 'Wednesday',
+	'R_THURSDAY'	=> 'Thursday',
+	'R_FRIDAY'		=> 'Friday',
+	'R_SATURDAY'	=> 'Saturday',
+	'R_SUNDAY'		=> 'Sunday',
 ));

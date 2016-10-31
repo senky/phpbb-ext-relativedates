@@ -34,21 +34,14 @@ class relativetranslator implements TranslatorInterface
 	*/
 	public function trans($id, array $parameters = array(), $domain = null, $locale = null)
 	{
-		$params = array_merge([strtoupper($id)], array_values($parameters));
+		$params = $this->get_params($id, $parameters);
 		// `$user->lang()` returns warning when there are not enough params for `sprintf`.
 		// In our situation, date class always tries to call this method before `transChoice`
 		// and expects `$id` to be returned in fail case. We need to mimic this behaviour.
 		$translation = @call_user_func_array([$this->user, 'lang'], $params);
 
 		// Was translation successful?
-		if ($translation == strtoupper($id))
-		{
-			return $id;
-		}
-		else
-		{
-			return $translation;
-		}
+		return $this->verify_translation($translation, $id);
 	}
 
 	/**
@@ -56,18 +49,11 @@ class relativetranslator implements TranslatorInterface
 	*/
 	public function transChoice($id, $number, array $parameters = array(), $domain = null, $locale = null)
 	{
-		$params = array_merge([strtoupper($id)], array_values($parameters));
+		$params = $this->get_params($id, $parameters);
 		$translation = call_user_func_array([$this->user, 'lang'], $params);
 
 		// Was translation successful?
-		if ($translation == strtoupper($id))
-		{
-			return $id;
-		}
-		else
-		{
-			return $translation;
-		}
+		return $this->verify_translation($translation, $id);
 	}
 
 	/**
@@ -84,5 +70,47 @@ class relativetranslator implements TranslatorInterface
 	public function getLocale()
 	{
 		return $this->user->get_iso_lang_id();
+	}
+
+	/**
+	 * Return correct language string: phpBB or Jenssegers\Date
+	 *
+	 * @param	string	$id			Lang entry ID
+	 * @param	array	$parameters	Lang entry parameters
+	 *
+	 * @return	array	\phpbb\user::lang parameters array
+	 */
+	private function get_params($id, $parameters)
+	{
+		if ($id == strtoupper($id)) // phpBB call
+		{
+			return array_merge([$id], array_values($parameters));
+		}
+		else // Jenssegers\Date call
+		{
+			return array_merge(['R_' . strtoupper($id)], array_values($parameters));
+		}
+	}
+
+	/**
+	 * Verifies, if translation was successful in singular form.
+	 * Since we prefix our language keys with "R_", we need to
+	 * check for them as well.
+	 *
+	 * @param	string	$translation	Translated string
+	 * @param	string	$id				Lang entry ID
+	 *
+	 * @return	array	\phpbb\user::lang parameters array
+	 */
+	private function verify_translation($translation, $id)
+	{
+		if ($translation == strtoupper($id) || substr($translation, 0, 2) == 'R_')
+		{
+			return $id;
+		}
+		else
+		{
+			return $translation;
+		}
 	}
 }
