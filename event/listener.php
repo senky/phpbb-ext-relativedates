@@ -25,6 +25,9 @@ class listener implements EventSubscriberInterface
 		return array(
 			'core.ucp_prefs_personal_data'			=> 'add_relativedates_to_global_settings_data',
 			'core.ucp_prefs_personal_update_data'	=> 'add_relativedates_to_global_settings_update',
+
+			'core.text_formatter_s9e_configure_after'	=> 'fix_quote_bbcode',
+			'core.text_formatter_s9e_render_before'		=> 'relative_date_switch',
 		);
 	}
 
@@ -64,5 +67,44 @@ class listener implements EventSubscriberInterface
 		$sql_ary = $event['sql_ary'];
 		$sql_ary['user_relativedates'] = $event['data']['relativedates'];
 		$event['sql_ary'] = $sql_ary;
+	}
+
+	public function fix_quote_bbcode($event)
+	{
+		$tag = $event['configurator']->tags['quote'];
+		$tag->template = str_replace(
+			'<xsl:value-of select="@date"/>',
+			'<xsl:choose>
+				<xsl:when test="@relative_date">
+					<span title="{@date}">
+						<xsl:value-of select="@relative_date"/>
+					</span>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:value-of select="@date"/>
+				</xsl:otherwise>
+				</xsl:choose>',
+			$tag->template
+		);
+	}
+
+	public function relative_date_switch($event)
+	{
+		if ($this->user->data['user_relativedates'])
+		{
+			$event['xml'] = \s9e\TextFormatter\Utils::replaceAttributes(
+				$event['xml'],
+				'QUOTE',
+				function ($attributes)
+				{
+					$datetime = $this->user->create_datetime((int) $attributes['time']);
+
+					$attributes['relative_date'] = $datetime->format('', false, false);
+					$attributes['date'] = $datetime->format('', true, false);
+
+					return $attributes;
+				}
+			);
+		}
 	}
 }
