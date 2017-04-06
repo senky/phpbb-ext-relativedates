@@ -100,7 +100,7 @@ class relativetranslator implements TranslatorInterface
 	 * @param	string	$translation	Translated string
 	 * @param	string	$id				Lang entry ID
 	 *
-	 * @return	array	\phpbb\user::lang parameters array
+	 * @return	string	translated text or language string ID
 	 */
 	private function verify_translation($translation, $id)
 	{

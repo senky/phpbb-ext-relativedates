@@ -43,8 +43,8 @@ class listener implements EventSubscriberInterface
 	/**
 	* Constructor
 	*
-	* @param \phpbb\controller\request	$request		Request object
-	* @param \phpbb\user				$user			User object
+	* @param \phpbb\request\request		$request	Request object
+	* @param \phpbb\user				$user		User object
 	*/
 	public function __construct(\phpbb\request\request $request, \phpbb\user $user, \phpbb\template\template $template)
 	{
