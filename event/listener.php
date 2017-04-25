@@ -97,10 +97,13 @@ class listener implements EventSubscriberInterface
 				'QUOTE',
 				function ($attributes)
 				{
-					$datetime = $this->user->create_datetime((int) $attributes['time']);
+					if (isset($attributes['time']))
+					{
+						$datetime = $this->user->create_datetime((int) $attributes['time']);
 
-					$attributes['relative_date'] = $datetime->format('', false, false);
-					$attributes['date'] = $datetime->format('', true, false);
+						$attributes['relative_date'] = $datetime->format('', false, false);
+						$attributes['date'] = $datetime->format('', true, false);
+					}
 
 					return $attributes;
 				}
