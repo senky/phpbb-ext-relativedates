@@ -23,6 +23,8 @@ class listener implements EventSubscriberInterface
 	static public function getSubscribedEvents()
 	{
 		return array(
+			'core.user_format_date_override'	=> 'custom_format_date',
+
 			'core.ucp_prefs_personal_data'			=> 'add_relativedates_to_global_settings_data',
 			'core.ucp_prefs_personal_update_data'	=> 'add_relativedates_to_global_settings_update',
 
@@ -51,6 +53,18 @@ class listener implements EventSubscriberInterface
 		$this->request = $request;
 		$this->user = $user;
 		$this->template = $template;
+	}
+
+	public function custom_format_date($event)
+	{
+		$gmepoch = (int) $event['function_arguments'][0];
+		$format = isset($event['function_arguments'][1]) ? $event['function_arguments'][1] : '';
+		$force_absolute = isset($event['function_arguments'][2]) ? $event['function_arguments'][2] : false;
+		$absolute_wrap = isset($event['function_arguments'][3]) ? $event['function_arguments'][3] : true;
+
+		$datetime = $this->user->create_datetime($gmepoch);
+
+		$event['format_date_override'] = $datetime->format($format, $force_absolute, $absolute_wrap);
 	}
 
 	public function add_relativedates_to_global_settings_data($event)
