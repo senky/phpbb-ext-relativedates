@@ -30,6 +30,8 @@ class listener implements EventSubscriberInterface
 
 			'core.text_formatter_s9e_configure_after'	=> 'fix_quote_bbcode',
 			'core.text_formatter_s9e_render_before'		=> 'relative_date_switch',
+
+			'core.viewtopic_modify_post_row'	=> 'relative_last_bumped_and_edited_reason',
 		);
 	}
 
@@ -122,6 +124,53 @@ class listener implements EventSubscriberInterface
 					return $attributes;
 				}
 			);
+		}
+	}
+
+	public function relative_last_bumped_and_edited_reason($event)
+	{
+		if (!empty($event['post_row']['BUMPED_MESSAGE']))
+		{
+			$event['post_row']['BUMPED_MESSAGE'] = $this->user->lang('BUMPED_BY', $event['user_cache'][$event['topic_data']['topic_bumper']]['username'], $this->user->format_date($event['topic_data']['topic_last_post_time'], false, true));
+		}
+
+		if (!empty($event['post_row']['EDITED_MESSAGE']))
+		{
+			// Copied from viewtopic.php
+			if ($row['post_edit_reason'])
+			{
+				// User having edited the post also being the post author?
+				if (!$event['row']['post_edit_user'] || $event['row']['post_edit_user'] == $event['poster_id'])
+				{
+					$display_username = get_username_string('full', $event['poster_id'], $event['row']['username'], $event['row']['user_colour'], $event['row']['post_username']);
+				}
+				else
+				{
+					$display_username = get_username_string('full', $event['row']['post_edit_user'], $event['post_edit_list'][$event['row']['post_edit_user']]['username'], $event['post_edit_list'][$event['row']['post_edit_user']]['user_colour']);
+				}
+			}
+			else
+			{
+				if ($event['row']['post_edit_user'] && !isset($event['user_cache'][$event['row']['post_edit_user']]))
+				{
+					$post_edit_user = $event['post_edit_list'][$event['row']['post_edit_user']];
+				}
+				else
+				{
+					$post_edit_user = $event['user_cache'][$event['row']['post_edit_user']];
+				}
+				// User having edited the post also being the post author?
+				if (!$event['row']['post_edit_user'] || $event['row']['post_edit_user'] == $event['poster_id'])
+				{
+					$display_username = get_username_string('full', $event['poster_id'], $event['row']['username'], $event['row']['user_colour'], $event['row']['post_username']);
+				}
+				else
+				{
+					$display_username = get_username_string('full', $event['row']['post_edit_user'], $post_edit_user['username'], $post_edit_user['user_colour']);
+				}
+			}
+
+			$event['post_row']['EDITED_MESSAGE'] = $user->lang('EDITED_TIMES_TOTAL', (int) $event['row']['post_edit_count'], $display_username, $this->user->format_date($event['row']['post_edit_time'], false, true));
 		}
 	}
 }
