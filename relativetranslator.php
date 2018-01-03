@@ -50,6 +50,11 @@ class relativetranslator implements TranslatorInterface
 	public function transChoice($id, $number, array $parameters = array(), $domain = null, $locale = null)
 	{
 		$params = $this->get_params($id, $parameters);
+		// 0 minutes ago. We will translate this into "R_NOW".
+		if (isset($params[1]) && $params[1] == 0)
+		{
+			$params[0] = 'R_NOW';
+		}
 		$translation = call_user_func_array([$this->user, 'lang'], $params);
 
 		// Was translation successful?

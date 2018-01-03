@@ -27,6 +27,7 @@ $lang = array_merge($lang, array(
 	),
 	'R_BUMPED_MESSAGE'	=> 'Last bumped by %1$s %2$s.',
 
+	'R_NOW'			=> 'just now',
 	'R_AGO'			=> '%s ago',
 	'R_FROM_NOW'	=> '%s from now',
 	'R_AFTER'		=> '%s after',
