@@ -5,3 +5,18 @@
 		<label for="relativedates0"><input type="radio" name="relativedates" id="relativedates0" value="0"<!-- IF not S_RELATIVEDATES --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
 	</dd>
 </dl>
+
+<dl>
+	<dt><label for="relativedates_number">{L_RELATIVE_DATES_MAX}{L_COLON}</label><br><span>{{ lang('RELATIVE_DATES_MAX_DESC') }}</span></dt>
+	<dd>
+		<label for="relativedates_number">
+			<input class="input narrow" type="number" name="relativedates_number" id="relativedates_number" value="{{ RELATIVEDATES_NUMBER }}" />
+			<select name="relativedates_multiplier">
+				<option value="0">---</option>
+				<option value="86400"{% if RELATIVEDATES_MULTIPLIER == 86400 %} selected{% endif %}>{{ lang('R_DAYS') }}</option>
+				<option value="2592000"{% if RELATIVEDATES_MULTIPLIER == 2592000 %} selected{% endif %}>{{ lang('R_MONTHS') }}</option>
+				<option value="31536000"{% if RELATIVEDATES_MULTIPLIER == 31536000 %} selected{% endif %}>{{ lang('R_YEARS') }}</option>
+			</select>
+		</label>
+	</dd>
+</dl>

@@ -19,7 +19,12 @@ if (empty($lang) || !is_array($lang))
 }
 
 $lang = array_merge($lang, array(
-	'RELATIVE_DATES'	=> 'Show relative dates',
+	'RELATIVE_DATES'			=> 'Show relative dates',
+	'RELATIVE_DATES_MAX'		=> 'Maximum age of relative dates',
+	'RELATIVE_DATES_MAX_DESC'	=> 'Every date older than specified here will be automatically in absolute format. Set to 0 disable.',
+	'R_DAYS'					=> 'day(s)',
+	'R_MONTHS'					=> 'month(s)',
+	'R_YEARS'					=> 'year(s)',
 
 	'R_EDITED_TIMES_TOTAL'	=> array(
 		1	=> 'Last edited by %2$s %3$s, edited %1$d time in total.',

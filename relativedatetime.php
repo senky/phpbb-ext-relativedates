@@ -25,6 +25,15 @@ class relativedatetime extends Date
 	private $user;
 
 	/**
+	 * @var	int	Max age in timestamp
+	 */
+	private $max_age;
+	/**
+	 * @var	int	Current time. This variable is used to calculate if max age was exceeded, since it can be approximated.
+	 */
+	private $current_time;
+
+	/**
 	* Constructs a new instance of \Jenssegers\Date\Date, expanded to include an argument to inject
 	* the user context and modify the timezone to the users selected timezone if one is not set.
 	*
@@ -58,6 +67,9 @@ class relativedatetime extends Date
 			// Default to user timezone
 			$timezone = $timezone ?: $this->user->timezone;
 
+			$this->max_age = $this->user->data['user_relativedates_number'] * $this->user->data['user_relativedates_multiplier'];
+			$this->current_time = time();
+
 			parent::__construct($time_or_timezone, $timezone);
 		}
 		else
@@ -68,6 +80,11 @@ class relativedatetime extends Date
 
 	public function format($format = '', $force_absolute = false, $absolute_wrap = true)
 	{
+		if ($this->max_age && $this->getTimestamp() + $this->max_age < $this->current_time)
+		{
+			$force_absolute = true;
+		}
+
 		if (!$this->user->data['user_relativedates'] || $force_absolute)
 		{
 			// Sanitize output, because it has been decoded to ensure \DateTime::format() parses only

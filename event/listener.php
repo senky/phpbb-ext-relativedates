@@ -73,15 +73,23 @@ class listener implements EventSubscriberInterface
 	{
 		$data = $event['data'];
 		$data['relativedates'] = $this->request->variable('relativedates', (bool) $this->user->data['user_relativedates']);
+		$data['relativedates_number'] = $this->request->variable('relativedates_number', $this->user->data['user_relativedates_number']);
+		$data['relativedates_multiplier'] = $this->request->variable('relativedates_multiplier', $this->user->data['user_relativedates_multiplier']);
 		$event['data'] = $data;
 
-		$this->template->assign_var('S_RELATIVEDATES', $data['relativedates']);
+		$this->template->assign_vars(array(
+			'S_RELATIVEDATES'			=> $data['relativedates'],
+			'RELATIVEDATES_NUMBER'		=> $data['relativedates_number'],
+			'RELATIVEDATES_MULTIPLIER'	=> $data['relativedates_multiplier'],
+		));
 	}
 
 	public function add_relativedates_to_global_settings_update($event)
 	{
 		$sql_ary = $event['sql_ary'];
 		$sql_ary['user_relativedates'] = $event['data']['relativedates'];
+		$sql_ary['user_relativedates_number'] = $event['data']['relativedates_number'];
+		$sql_ary['user_relativedates_multiplier'] = $event['data']['relativedates_multiplier'];
 		$event['sql_ary'] = $sql_ary;
 	}
 
