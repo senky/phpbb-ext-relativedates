@@ -21,6 +21,12 @@ if (empty($lang) || !is_array($lang))
 $lang = array_merge($lang, array(
 	'RELATIVE_DATES'	=> 'Show relative dates',
 
+	'R_EDITED_TIMES_TOTAL'	=> array(
+		1	=> 'Last edited by %2$s %3$s, edited %1$d time in total.',
+		2	=> 'Last edited by %2$s %3$s, edited %1$d times in total.',
+	),
+	'R_BUMPED_MESSAGE'	=> 'Last bumped by %1$s %2$s.',
+
 	'R_AGO'			=> '%s ago',
 	'R_FROM_NOW'	=> '%s from now',
 	'R_AFTER'		=> '%s after',

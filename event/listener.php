@@ -129,15 +129,17 @@ class listener implements EventSubscriberInterface
 
 	public function relative_last_bumped_and_edited_reason($event)
 	{
+		$post_row = $event['post_row'];
+
 		if (!empty($event['post_row']['BUMPED_MESSAGE']))
 		{
-			$event['post_row']['BUMPED_MESSAGE'] = $this->user->lang('BUMPED_BY', $event['user_cache'][$event['topic_data']['topic_bumper']]['username'], $this->user->format_date($event['topic_data']['topic_last_post_time'], false, true));
+			$post_row['BUMPED_MESSAGE'] = $this->user->lang('R_BUMPED_MESSAGE', $event['user_cache'][$event['topic_data']['topic_bumper']]['username'], $this->user->format_date($event['topic_data']['topic_last_post_time'], false, false));
 		}
 
 		if (!empty($event['post_row']['EDITED_MESSAGE']))
 		{
 			// Copied from viewtopic.php
-			if ($row['post_edit_reason'])
+			if ($event['row']['post_edit_reason'])
 			{
 				// User having edited the post also being the post author?
 				if (!$event['row']['post_edit_user'] || $event['row']['post_edit_user'] == $event['poster_id'])
@@ -170,7 +172,9 @@ class listener implements EventSubscriberInterface
 				}
 			}
 
-			$event['post_row']['EDITED_MESSAGE'] = $user->lang('EDITED_TIMES_TOTAL', (int) $event['row']['post_edit_count'], $display_username, $this->user->format_date($event['row']['post_edit_time'], false, true));
+			$post_row['EDITED_MESSAGE'] = $this->user->lang('R_EDITED_TIMES_TOTAL', (int) $event['row']['post_edit_count'], $display_username, $this->user->format_date($event['row']['post_edit_time'], false, false));
 		}
+
+		$event['post_row'] = $post_row;
 	}
 }
