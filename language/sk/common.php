@@ -19,6 +19,20 @@ if (empty($lang) || !is_array($lang))
 }
 
 $lang = array_merge($lang, array(
+	'RELATIVE_DATES'			=> 'Zobraziť relatívne časy',
+	'RELATIVE_DATES_MAX'		=> 'Maximálny vek relatívneho času',
+	'RELATIVE_DATES_MAX_DESC'	=> 'Dátumy staršie ako tuto zadaný čas budú zobrazované automaticky v absolútnom formáte. Nastavte 0 pre neustále zobrazovanie relatívneho času.',
+	'R_DAYS'					=> 'dni',
+	'R_MONTHS'					=> 'mesiace',
+	'R_YEARS'					=> 'roky',
+
+	'R_EDITED_TIMES_TOTAL'	=> array(
+		1	=> 'Naposledy upravené používateľom %2$s %3$s, celkovo upravené %1$dkrát.',
+		2	=> 'Naposledy upravené používateľom %2$s %3$s, celkovo upravené %1$dkrát.',
+	),
+	'R_BUMPED_MESSAGE'	=> 'Naposledy oživené %1$s %2$s.',
+
+	'R_NOW'			=> 'pred chvíľou',
 	'R_AGO'			=> 'pred %s',
 	'R_FROM_NOW'	=> 'za %s',
 	'R_AFTER'		=> '%s neskôr',
