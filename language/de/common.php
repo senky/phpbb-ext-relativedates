@@ -49,7 +49,7 @@ $lang = array_merge($lang, array(
     ),
     'R_DAY' => array(
         1 => '1 Tag',
-        2 => '%d Tage',
+        2 => '%d Tagen',
     ),
     'R_HOUR' => array(
         1 => '1 Stunde',
